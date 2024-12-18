@@ -3,12 +3,17 @@ import { View, Text, StyleSheet, Image, TextInput } from "react-native";
 
 import { Feather } from '@expo/vector-icons';
 
-const SearchBar = (props) => {
+const SearchBar = ({text, onTextChange,onEditEnd }) => {
     return (
         <View style = {styles.searchBarBg} >
-            <TextInput style={styles.textInput} placeholder="Input Here" maxLength={10}></TextInput>
+            <TextInput style={styles.textInput}
+             placeholder="Input Here" 
+             maxLength={20} 
+             value= {text}
+             onChangeText={onTextChange}
+             onEndEditing= {(e) => onEditEnd(e.nativeEvent.text)}
+             ></TextInput>
             <Feather style = {{alignSelf : "center"}} name="search" size={30} color="black" />
-       { /* <Image style={styles.image} source={require('../../assets/search.png')} />*/}
         </View>
     );
 }
